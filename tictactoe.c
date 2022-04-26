@@ -13,24 +13,33 @@ struct bilgi{
 
 struct bilgi isim;
 
-void bastir() {
+void tahtayiBastir() {
 	
 	// Oyun tahtasýný yazdýrýr.
 	
-    printf("\n\t\t\t\t--TIC TAC TOE--\n");
-    printf("%s : X\n%s : O\n",isim.oyuncu1,isim.oyuncu2);
+    printf("\n\t\t\t\t--TIC TAC TOE--\n\n");
+    printf("%s : X\t\t\t\t\t\t\t%s : O\n",isim.oyuncu1,isim.oyuncu2);
     printf("\n\t\t\t         |         |         ");
     printf("\n\t\t\t    %c    |    %c    |    %c   ",kutu[1],kutu[2],kutu[3]);
+    printf("\n\t\t\t         |         |         ");
     printf("\n\t\t\t---------|---------|---------");
     printf("\n\t\t\t         |         |         ");
     printf("\n\t\t\t    %c    |    %c    |    %c   ",kutu[4],kutu[5],kutu[6]);
+    printf("\n\t\t\t         |         |         ");
     printf("\n\t\t\t---------|---------|---------");
     printf("\n\t\t\t         |         |         ");
     printf("\n\t\t\t    %c    |    %c    |    %c   ",kutu[7],kutu[8],kutu[9]);
     printf("\n\t\t\t         |         |         ");
 }
 
-int kontrol() {
+void tahtaReset() {
+	
+	// Oyun tahtasýný sýfýrlar.
+	
+	kutu[1] = '1', kutu[2] = '2', kutu[3] = '3', kutu[4] = '4', kutu[5] = '5', kutu[6] = '6', kutu[7] = '7', kutu[8] = '8', kutu[9] = '9';
+}
+
+int kazananKontrol() {
 	
 	// Oyunun durumuna göre return 1 oyunun kazananla sonuçlandýðýný, 0 berabere bittiðini, -1 oyunun devam ettiðini gösterir.
 	
@@ -65,7 +74,7 @@ int kontrol() {
 	    return -1;
 }
 
-int main() {
+int oyunBaslat() {
 	
 	struct bilgi oyuncu1, oyuncu2;
 	
@@ -75,10 +84,10 @@ int main() {
 	int oyuncu = 1, i, secim;
 	char isaret;
 	
-	printf("1.Oyuncunun adini giriniz: ");
-	gets(isim.oyuncu1);
-	printf("2.Oyuncunun adini giriniz: ");
-	gets(isim.oyuncu2);
+	printf("1.Oyuncu : ");
+	scanf("%s",&isim.oyuncu1);
+	printf("2.Oyuncu : ");
+	scanf("%s",&isim.oyuncu2);
 	
 	skorTablosu = fopen("SkorTablosu.txt","w");
     
@@ -89,7 +98,7 @@ int main() {
 	
 	do {
 		
-		bastir();
+		tahtayiBastir();
 		
 		oyuncu = (oyuncu % 2) ? 1: 2;  // oyuncu deðiþkeninin deðerinin 2 ile bölümünden kalan varsa oyuncu = 1 deðerini alýr, yoksa oyuncu = 2 deðerini alýr.
 		
@@ -142,14 +151,14 @@ int main() {
 			   oyuncu--;  // Hatalý seçim yapýldýðýnda ayný oyuncunun tekrar oynayabilmesi için oyuncu deðiþkeni 1 azaltýlýr.
 		}
 		
-		i = kontrol();
+		i = kazananKontrol();
 		
 		oyuncu++;  // Sýradaki oyuncuya geçmek için oyuncu deðiþkeni 1 arttýrýlýr.
 }
 
     while(i == -1);
     
-    bastir();
+    tahtayiBastir();
     
 		if(i == 1 && oyuncu - 1 == 1) {
 		    printf("\n>> %s OYUNU KAZANDI",isim.oyuncu1);
@@ -171,6 +180,30 @@ int main() {
     
     fclose(skorTablosu);
 		    
+}
+
+int main() {
+	
+	oyunBaslat();
+	
+	char tekrar;
+	
+	printf("\nTekrar oynamak ister misiniz? (E/H) : ");
+	scanf("%s",&tekrar);
+	
+	if(tekrar == 'E') {
+		
+		do {
+			
+		    tahtaReset();
+		    oyunBaslat();
+		
+            printf("\nTekrar oynamak ister misiniz? (E/H) : ");
+	        scanf("%s",&tekrar);
+} 
+
+    while(tekrar == 'E');
+
+}	
     return 0;
-    
 }
