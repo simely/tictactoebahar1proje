@@ -32,13 +32,6 @@ void tahtayiBastir() {
     printf("\n\t\t\t         |         |         ");
 }
 
-void tahtaReset() {
-	
-	// Oyun tahtasýný sýfýrlar.
-	
-	kutu[1] = '1', kutu[2] = '2', kutu[3] = '3', kutu[4] = '4', kutu[5] = '5', kutu[6] = '6', kutu[7] = '7', kutu[8] = '8', kutu[9] = '9';
-}
-
 int kazananKontrol() {
 	
 	// Oyunun durumuna göre return 1 oyunun kazananla sonuçlandýðýný, 0 berabere bittiðini, -1 oyunun devam ettiðini gösterir.
@@ -178,8 +171,14 @@ int oyunBaslat() {
     fprintf(skorTablosu,"%s %d",isim.oyuncu1, oyuncu1.skor);
     fprintf(skorTablosu,"\n%s %d",isim.oyuncu2, oyuncu2.skor);
     
-    fclose(skorTablosu);
-		    
+    fclose(skorTablosu);	    
+}
+
+void tahtaReset() {
+	
+	// Oyun tahtasýný sýfýrlar.
+	
+	kutu[1] = '1', kutu[2] = '2', kutu[3] = '3', kutu[4] = '4', kutu[5] = '5', kutu[6] = '6', kutu[7] = '7', kutu[8] = '8', kutu[9] = '9';
 }
 
 int main() {
