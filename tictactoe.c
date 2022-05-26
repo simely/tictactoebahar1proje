@@ -82,7 +82,7 @@ int oyunBaslat() {
 	printf("2.Oyuncu : ");
 	scanf("%s",&isim.oyuncu2);
 	
-	skorTablosu = fopen("SkorTablosu.txt","w+");
+	skorTablosu = fopen("SkorTablosu.txt","w+a");
     
     fprintf(skorTablosu,"%s %d",isim.oyuncu1, oyuncu1.skor);
     fprintf(skorTablosu,"\n%s %d",isim.oyuncu2, oyuncu2.skor);
@@ -166,7 +166,7 @@ int oyunBaslat() {
 		if(i == 0)
 		    printf("\n>> BERABERE");
 		    
-	skorTablosu = fopen("Skor_Tablosu.txt","w+");
+	skorTablosu = fopen("Skor_Tablosu.txt","w+a");
     
     fprintf(skorTablosu,"%s %d",isim.oyuncu1, oyuncu1.skor);
     fprintf(skorTablosu,"\n%s %d",isim.oyuncu2, oyuncu2.skor);
@@ -199,6 +199,9 @@ int main() {
 		
             printf("\nTekrar oynamak ister misiniz? (E/H) : ");
 	        scanf("%s",&oyunTekrar);
+	        
+	    if(oyunTekrar == 'H')
+	      printf("IYI GUNLER :)");
 } 
 
     while(oyunTekrar == 'E');
@@ -206,7 +209,7 @@ int main() {
 }
 
     else if(oyunTekrar == 'H')
-      printf("IYI GUNLER :)");
-	
+	    printf("IYI GUNLER :)");
+
     return 0;
 }
