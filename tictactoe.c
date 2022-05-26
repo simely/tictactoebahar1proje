@@ -86,8 +86,6 @@ int oyunBaslat() {
     
     fprintf(skorTablosu,"%s %d",isim.oyuncu1, oyuncu1.skor);
     fprintf(skorTablosu,"\n%s %d",isim.oyuncu2, oyuncu2.skor);
-    
-    fclose(skorTablosu);
 	
 	do {
 		
@@ -170,8 +168,7 @@ int oyunBaslat() {
     
     fprintf(skorTablosu,"%s %d",isim.oyuncu1, oyuncu1.skor);
     fprintf(skorTablosu,"\n%s %d",isim.oyuncu2, oyuncu2.skor);
-    
-    fclose(skorTablosu);	    
+      
 }
 
 void tahtaReset() {
@@ -200,16 +197,20 @@ int main() {
             printf("\nTekrar oynamak ister misiniz? (E/H) : ");
 	        scanf("%s",&oyunTekrar);
 	        
-	    if(oyunTekrar == 'H')
+	    if(oyunTekrar == 'H') {
 	      printf("IYI GUNLER :)");
+	      fclose(skorTablosu);
+	  }    
 } 
 
     while(oyunTekrar == 'E');
 
 }
 
-    else if(oyunTekrar == 'H')
+    else if(oyunTekrar == 'H') {
 	    printf("IYI GUNLER :)");
+	    fclose(skorTablosu);
+	}    
 
     return 0;
 }
